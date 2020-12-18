@@ -1,0 +1,36 @@
+body {
+    background: #232628;
+    color: #fafafa;
+    overflow: auto;
+  }
+  h1 {
+    display: inline;
+    font-size: 900%;
+  }
+  .yellow_style{
+    color: #c39806;
+  }
+  .one_liner{
+      display: inline-block;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #fafafa #232628;
+  }
+  
+  /* Works on Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 12px;
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #232628;
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #fafafa;
+    border-radius: 20px;
+    border: 3px solid #232628;
+  }
+
+  
