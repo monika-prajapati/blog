@@ -5,14 +5,15 @@ body {
   }
   h1 {
     display: inline;
-    font-size: 900%;
+    font-size: 10rem;
   }
   .yellow_style{
     color: #c39806;
   }
-  .one_liner{
-      display: inline-block;
-  }
+.make_responsive{
+  height:9rem;
+}
+
   * {
     scrollbar-width: thin;
     scrollbar-color: #fafafa #232628;
@@ -33,4 +34,12 @@ body {
     border: 3px solid #232628;
   }
 
-  
+  @media only screen and (max-width: 600px){
+    h1{
+      font-size: 5rem;
+    }
+    #landing{
+      display:none;
+    }
+  }
+
