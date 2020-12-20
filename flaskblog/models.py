@@ -17,6 +17,8 @@ class User(db.Model, UserMixin):
     image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     password = db.Column(db.String(60), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
+    profile = db.relationship('UserProfile', backref='author', lazy=True)
+    projects = db.relationship('Project', backref='author', lazy=True)
 
     def get_reset_token(self, expires_sec=1800):
         s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
@@ -44,3 +46,30 @@ class Post(db.Model):
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
+
+class UserProfile(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    cv = db.Column(db.String(20), nullable=False, default='resume.pdf')
+    bio = db.Column(db.Text, nullable=False)
+    gmail = db.Column(db.String(100), nullable=False)
+    github = db.Column(db.String(100), nullable=False)
+    gitlab = db.Column(db.String(100), nullable=False)
+    facebook = db.Column(db.String(100), nullable=False)
+    linkedln = db.Column(db.String(100), nullable=False)
+    instagram = db.Column(db.String(100), nullable=False)
+    nouns = db.Column(db.String(100), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+class Project(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    intro = db.Column(db.String(200), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    link = db.Column(db.String(100), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+
+    def __repr__(self):
+        return f"Projects('{self.title}', '{self.date_posted}')"
+
+
