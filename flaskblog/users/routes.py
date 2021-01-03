@@ -50,40 +50,13 @@ def account():
             current_user.image_file = picture_file
         current_user.username = form.username.data
         current_user.email = form.email.data
-        if form.cv.data:
-            cv = save_picture(form.cv.data)
-            user.cv = cv
-        user.bio = form.bio.data
-        user.cv = form.cv.data
-        user.bio = form.bio.data
-        user.gmail = form.gmail.data
-        user.github = form.github.data
-        user.gitlab = form.gitlab.data
-        user.facebook = form.facebook.data
-        user.linkedln = form.linkedln.data
-        user.instagram = form.instagram.data
-        user.nouns = form.nouns.data
-        user.submit = form.submit.data
         db.session.commit()
         flash('Your account has been updated!','success')
         return redirect(url_for('users.account'))
     elif request.method == 'GET':
         form.username.data = current_user.username
         form.email.data = current_user.email
-        form.bio.data = user.bio
-        form.cv.data = user.cv
-        form.bio.data = user.bio
-        form.gmail.data = user.gmail
-        form.github.data = user.github
-        form.gitlab.data = user.gitlab
-        form.facebook.data = user.facebook
-        form.linkedln.data = user.linkedln
-        form.instagram.data = user.instagram
-        form.nouns.data = user.nouns
-        form.submit.data = user.submit
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
-    cv = url_for('static', filename='profile_pics/' + user.cv)
-    
     return render_template('account.html', title='Account', image_file=image_file, form=form)
 
 @users.route('/user/<string:username>')
